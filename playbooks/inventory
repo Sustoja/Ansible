@@ -1,0 +1,8 @@
+[NewPiServers]
+192.168.1.94  ansible_user=ansible
+
+[NewDNSServer]
+192.168.1.23 ansible_user=ubuntu
+
+[TestUbuntu]
+192.168.1.20

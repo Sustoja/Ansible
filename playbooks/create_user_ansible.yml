@@ -1,0 +1,24 @@
+# https://www.howtoforge.com/tutorial/setup-new-user-and-ssh-key-authentication-using-ansible/
+#
+# El playbook hay que ejecutarlo con la opción '--ask-pass'
+
+- hosts: [NewPiServers]
+  gather_facts: no
+  become: yes
+  vars:
+    - provision_user: 'ansible'
+
+    # Password obtained with this command: 'mkpasswd --method=SHA-512'
+    - provision_password: '$6$7gkL4EhWgrz$4oVK2MaS6tXZ/bpsWxuD2h.ov0MmgPKMnyjTQOwbmpLgjpoMWFvnJ3THO7k6sTO6EUVrIsDoSXdNtOTPW7kpc1'
+  
+  tasks:
+    - name: Add new user
+      user:
+          name={{ provision_user }}
+          password={{ provision_password }}
+          shell="/bin/bash"
+ 
+    - name: Add user to the sudoers
+      copy:
+          dest: "/etc/sudoers.d/{{ provision_user }}"
+          content: "{{ provision_user }}  ALL=(ALL)  NOPASSWD: ALL"

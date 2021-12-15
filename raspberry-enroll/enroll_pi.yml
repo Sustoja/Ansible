@@ -1,0 +1,10 @@
+# https://www.howtoforge.com/tutorial/setup-new-user-and-ssh-key-authentication-using-ansible/
+
+- hosts: [NewPiServers]
+  gather_facts: no
+  become: yes
+  
+  roles:
+    - createuser
+    - updateOS
+    - settimezone
