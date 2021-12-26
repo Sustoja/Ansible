@@ -6,11 +6,11 @@ Este proyecto está formado por los **playbooks** y los **roles** de la herramie
 
 ## ServDocker
 
-- Playbooks para configurar un servidor Docker junto con el stack de contenedores asociado en mi Homelab: Portainer, Homer dashboard y File Browser. Todo queda configurado y en funcionamiento tras la ejecución salvo la creación de un entorno adicional en Portainer para controlar también los contenedores que se ejecutan en la NAS ya que no encuentro cómo hacerlo desde la línea de órdenes.
+- Playbooks para configurar un servidor Docker junto con el stack de contenedores para mi Homelab: [**Portainer**](https://www.portainer.io/), [**Homer dashboard**](https://github.com/bastienwirtz/homer) y [**File browser**](https://github.com/filebrowser/filebrowser). Todo queda configurado y en funcionamiento salvo la creación de un entorno adicional en Portainer para controlar los contenedores que se ejecutan en la NAS ya que no encuentro cómo hacerlo desde la línea de órdenes.
 
 ## Raspberry DNS
 
-- Playbooks para configurar un Ubuntu como servidor DNS para la red de casa. Incluye [**Pi-hole**](https://pi-hole.net/) como servidor de nombres local y eliminador de publicidad en la navegación y [**Unbound**](https://nlnetlabs.nl/projects/unbound/about/) como servidor DNS de validación, recursivo y con almacenamiento en caché.
+- Playbooks para configurar un Ubuntu como servidor DNS para la red de casa. Incluye [**Pi-hole**](https://pi-hole.net/) como servidor de nombres local y eliminador de publicidad y [**Unbound**](https://nlnetlabs.nl/projects/unbound/about/) como servidor DNS de validación recursivo con almacenamiento en caché.
 
 ## Raspberry Enroll
 
@@ -18,4 +18,4 @@ Este proyecto está formado por los **playbooks** y los **roles** de la herramie
 
 ## Playbooks
 
-- Playbooks donde voy desarrollando y probando ideas que dan lugar a proyectos como los dos anteriores.
+- Playbooks donde voy desarrollando y probando ideas que dan lugar a proyectos como los anteriores.
