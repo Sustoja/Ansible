@@ -1,0 +1,21 @@
+---
+- name: Check if Homer is already running
+  ansible.builtin.shell: sudo docker ps | grep homer
+  register: running_check
+  ignore_errors: True
+  changed_when: False
+
+- name: Run Homer in Docker
+  ansible.builtin.shell:
+    cmd: sudo docker run -d -p 8902:8080 --name=homer --restart=always -v /portainer/Files/AppData/Config/Homer/assets:/www/assets -v /portainer/Files/AppData/Config/Homer:/www/config.yml b4bz/homer:latest
+  when: "running_check.rc != 0"
+
+- name: Template config.yml into server
+  ansible.builtin.template:
+    src: "{{role_path}}/templates/config.j2"
+    dest: /portainer/Files/AppData/Config/Homer/assets/config.yml
+
+- name: Copy and unzip icons into server
+  ansible.builtin.unarchive:
+    src: "{{role_path}}/files/icons.zip"
+    dest: /portainer/Files/AppData/Config/Homer/assets/tools

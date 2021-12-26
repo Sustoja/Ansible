@@ -1,0 +1,11 @@
+---
+- name: Check if FileBrowser is already running
+  ansible.builtin.shell: sudo docker ps | grep filebrowser
+  register: running_check
+  ignore_errors: True
+  changed_when: False
+
+- name: Run FileBrowser in Docker
+  ansible.builtin.shell:      
+    cmd: sudo docker run -d -p 8125:80 --name=filebrowser --restart=always -v /:/srv -v /portainer/Files/AppData/Config/FileBrowser:/config filebrowser/filebrowser:latest
+  when: "running_check.rc != 0"

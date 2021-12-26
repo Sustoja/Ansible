@@ -1,0 +1,11 @@
+# Playbook to set up my Homelab Docker stack (dec. 21)
+
+- hosts: [DockerServers]
+  gather_facts: no
+  become: yes
+  
+  roles:
+    - docker
+    - portainer
+    - homer
+    - filebrowser
