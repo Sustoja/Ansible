@@ -1,9 +1,12 @@
 # Ansible
 
-Este proyecto está formado por los **playbooks** y los **roles** de la herramienta [Ansible](https://www.redhat.com/es/technologies/management/ansible) que utilizo para configurar los servidores virtuales y  físicos que componen mi laboratorio doméstico.
+Este proyecto está formado por los **playbooks** y los **roles** de la herramienta [Ansible](https://www.redhat.com/es/technologies/management/ansible) que utilizo para configurar los servidores virtuales y físicos que componen mi laboratorio doméstico.
 - Los físicos son **Raspberry Pi 3 y 4** ejecutanto Ubuntu.
 - Los equipos virtuales se ejcutan sobre **NAS** y también **MacOs/Parallels**
 
+## ServDocker
+
+- Playbooks para configurar un servidor Docker junto con el stack de contenedores asociado en mi Homelab: Portainer, Homer dashboard y File Browser. Todo queda configurado y en funcionamiento tras la ejecución salvo la creación de un entorno adicional en Portainer para controlar también los contenedores que se ejecutan en la NAS ya que no encuentro cómo hacerlo desde la línea de órdenes.
 
 ## Raspberry DNS
 
