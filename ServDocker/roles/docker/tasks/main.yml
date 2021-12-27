@@ -5,7 +5,7 @@
     state: latest
     name: "{{ docker_deps }}"
 
-- name: Update apt and install docker-ce
+- name: Update apt and install docker packages
   apt: 
     update_cache: yes 
     name: "{{ docker_packages }}"
@@ -19,10 +19,6 @@
 
 - name: Reboot for changes to take effect
   reboot:
-
-- name: Install docker-compose
-  pip:
-    name: docker-compose
 
 - name: Make sure Docker is running and enabled
   service: 
