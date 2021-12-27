@@ -1,14 +1,19 @@
 ---
-- name: Check if Homer is already running
-  ansible.builtin.shell: sudo docker ps | grep homer
-  register: running_check
-  ignore_errors: True
-  changed_when: False
 
-- name: Run Homer in Docker
-  ansible.builtin.shell:
-    cmd: sudo docker run -d -p 8902:8080 --name=homer --restart=always -v /portainer/Files/AppData/Config/Homer/assets:/www/assets -v /portainer/Files/AppData/Config/Homer:/www/config.yml b4bz/homer:latest
-  when: "running_check.rc != 0"
+# https://docs.ansible.com/ansible/latest/collections/community/docker/docker_container_module.html#ansible-collections-community-docker-docker-container-module
+# https://github.com/notthebee/infra/blob/main/roles/homer/tasks/main.yml
+
+- name: Restart Homer container
+  community.docker.docker_container:
+    name: homer
+    image: b4bz/homer:latest
+    state: started
+    restart_policy: always
+    ports:
+     # Publish container port 8080 as host port 8902
+     - "8902:8080"
+    volumes:
+     - "/portainer/Files/AppData/Config/Homer/assets:/www/assets"
 
 - name: Template config.yml into server
   ansible.builtin.template:
