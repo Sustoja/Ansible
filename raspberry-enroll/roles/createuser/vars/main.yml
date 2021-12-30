@@ -1,4 +1,0 @@
----
-provision_user: 'ja'
-provision_password: '$6$7gkL4EhWgrz$4oVK2MaS6tXZ/bpsWxuD2h.ov0MmgPKMnyjTQOwbmpLgjpoMWFvnJ3THO7k6sTO6EUVrIsDoSXdNtOTPW7kpc1'
-provision_ssh_key_file: '/Users/{{ provision_user }}/.ssh/id_rsa.pub'
