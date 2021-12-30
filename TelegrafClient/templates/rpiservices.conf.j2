@@ -1,0 +1,24 @@
+# Output Plugin InfluxDB
+[[outputs.influxdb]]
+  database = "cloud"
+  urls = [ "http://{{ influxDB_hostname }}:8086" ]
+  username = 'admin'
+  password = 'admin'
+  skip_database_creation = true
+
+# Input Plugins
+[[inputs.cpu]]
+    percpu = true
+    totalcpu = true
+    collect_cpu_time = false
+    report_active = false
+[[inputs.disk]]
+    ignore_fs = ["tmpfs", "devtmpfs", "devfs"]
+[[inputs.io]]
+[[inputs.mem]]
+[[inputs.net]]
+[[inputs.system]]
+[[inputs.swap]]
+[[inputs.netstat]]
+[[inputs.processes]]
+[[inputs.kernel]]

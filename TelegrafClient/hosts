@@ -1,0 +1,5 @@
+[TelegrafClients]
+192.168.1.40
+
+[TelegrafClients:vars]
+ansible_user=ja
