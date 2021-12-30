@@ -1,13 +1,23 @@
 ---
 
+- name: Add an Apt signing key, uses whichever key is at the URL
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+
+- name: Add Docker repository.
+  apt_repository:
+    repo: "{{ docker_repository }}"
+    state: present
+    update_cache: true
+
 - name: Install required system packages
   package: 
-    state: latest
     name: "{{ docker_deps }}"
+    state: latest
 
 - name: Update apt and install docker packages
-  apt: 
-    update_cache: yes 
+  package: 
     name: "{{ docker_packages }}"
     state: latest   
 
