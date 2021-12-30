@@ -1,0 +1,4 @@
+    if_read_pass: 'readonly'
+    if_write_pass: 'readwrite'
+    if_admin_pass: 'admin'
+    gf_admin_pass: 'admin'

@@ -1,0 +1,9 @@
+# Playbook to set up my Homelab monitoring stack (dec. 21)
+
+- hosts: [MonitoringServers]
+  gather_facts: no
+  become: yes
+
+  roles:
+    - influx_grafana
+    - telegraf

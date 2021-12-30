@@ -1,0 +1,50 @@
+---
+# https://www.rs-online.com/designspark/raspberry-pi-4-personal-datacentre-part-3-a-self-hosted-iot-data-platform
+
+- name: Create data platform network
+  docker_network:
+    name: dataplatform
+    driver: bridge
+
+- name: Create InfluxDB container
+  docker_container:
+    restart: yes
+    restart_policy: always
+    name: influxdb
+    image: influxdb:1.8
+    pull: yes
+    state: started
+    env:
+      INFLUXDB_DB: 'cloud'
+      INFLUXDB_READ_USER: 'read'
+      INFLUXDB_READ_USER_PASSWORD: '{{ if_read_pass }}'
+      INFLUXDB_WRITE_USER: 'write'
+      INFLUXDB_WRITE_USER_PASSWORD: '{{ if_write_pass }}'
+      INFLUXDB_ADMIN_USER: 'admin'
+      INFLUXDB_ADMIN_PASSWORD: '{{ if_admin_pass }}'
+      INFLUXDB_HTTP_ENABLED: 'true'
+      INFLUXDB_HTTP_HTTPS_ENABLED: 'false'
+      INFLUXDB_HTTP_AUTH_ENABLED: 'true' 
+    networks:
+      - name: dataplatform
+    volumes:
+      - 'if-data:/var/lib/influxdb'
+    ports:
+      - '8086:8086'
+
+- name: Create Grafana container
+  docker_container:
+    restart: yes
+    restart_policy: always
+    name: grafana
+    image: grafana/grafana:latest
+    pull: yes
+    state: started
+    env:
+      GF_SECURITY_ADMIN_PASSWORD: '{{ gf_admin_pass }}'
+    networks:
+      - name: dataplatform
+    volumes:
+      - 'gf-data:/var/lib/grafana'
+    ports:
+      - '3000:3000'    
