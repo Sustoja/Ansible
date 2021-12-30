@@ -1,0 +1,20 @@
+# https://www.howtoforge.com/tutorial/setup-new-user-and-ssh-key-authentication-using-ansible/
+
+# El playbook hay que ejecutarlo con la opción '--ask-pass' porque aún no
+# está disponible la autenticación con certificado al ser un equipo nuevo.
+
+- hosts: [NewPiServers]
+  gather_facts: no
+  become: yes
+
+  vars: 
+    - user: ja
+    - password: '$6$7gkL4EhWgrz$4oVK2MaS6tXZ/bpsWxuD2h.ov0MmgPKMnyjTQOwbmpLgjpoMWFvnJ3THO7k6sTO6EUVrIsDoSXdNtOTPW7kpc1'
+    - ssh_key_file: '/Users/{{ user }}/.ssh/id_rsa.pub'
+    - timezone: Europe/Madrid
+  
+  tasks:
+    - import_tasks: tasks/sethostname.yml
+    - import_tasks: tasks/createuser.yml
+    - import_tasks: tasks/updateOS.yml
+    - import_tasks: tasks/settimezone.yml

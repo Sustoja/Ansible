@@ -1,0 +1,5 @@
+---
+
+# Hostname is determined in the hosts file
+- name: Set a hostname
+  hostname: name='{{ hostname }}'
