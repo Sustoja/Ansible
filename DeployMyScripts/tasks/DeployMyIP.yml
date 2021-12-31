@@ -1,0 +1,18 @@
+---
+
+- name: Touch my_IP.txt file to initizalize it
+  file:
+    path: /etc/scriptsJA/My_IP/my_IP.txt
+    state: touch
+    mode: '0666'
+    
+- name: Copy ini file
+  copy:
+    src: ../files/my_IP.ini.NOTFORGIT
+    dest: /etc/scriptsJA/My_IP/my_IP.ini
+
+- name: Program a job to check hourly if public IP has changed
+  cron:
+    name: Check if public IP has changed
+    special_time: hourly
+    job: "python /etc/scriptsJA/My_IP/my_IP.py > /dev/null"   

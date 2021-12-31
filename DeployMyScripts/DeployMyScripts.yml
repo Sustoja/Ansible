@@ -1,0 +1,10 @@
+# Playbook to set up my Homelab Docker stack (dec. 21)
+
+- hosts: [ScriptsServer]
+  gather_facts: no
+  become: yes
+  
+  tasks:
+    - import_tasks: tasks/InstallGit.yml
+    - import_tasks: tasks/DeployMyIP.yml
+    - import_tasks: tasks/DeployEmpleoPublico.yml

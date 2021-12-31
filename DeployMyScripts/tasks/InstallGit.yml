@@ -1,0 +1,13 @@
+---
+
+- name: Make sure Git is installed
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+
+- name: Git checkout
+  git:
+    repo: 'https://github.com/Sustoja/PythonScripts.git'
+    dest: /etc/scriptsJA
+    force: yes
