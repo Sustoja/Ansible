@@ -1,5 +1,14 @@
 ---
-
 # Hostname is determined in the hosts file
-- name: Set a hostname
-  hostname: name='{{ hostname }}'
+- name: Set a host name
+  hostname:
+    name: "{{ hostname }}"
+
+- name: Add hostname to /etc/hosts file
+  lineinfile:
+    path: /etc/hosts
+    search_string: "127.0.1.1"
+    line: "127.0.1.1 localhost {{ hostname }}"
+    owner: root
+    group: root
+    mode: "0644"

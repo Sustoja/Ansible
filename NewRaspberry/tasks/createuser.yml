@@ -3,8 +3,7 @@
 - name: Add new user
   user:
       name={{ user }}
-      # Password obtained with this command: 'mkpasswd --method=SHA-512'
-      password={{ password }}
+      password="{{ password }}"
       shell="/bin/bash"
 
 - name: Add user to the sudoers
