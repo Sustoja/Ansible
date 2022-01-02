@@ -4,9 +4,15 @@ Este proyecto está formado por los **playbooks** y los **roles** de la herramie
 - Los físicos son varias  **Raspberry Pi 3 y 4**.
 - Los virtuales se ejecutan sobre una **NAS** de QNAP y también sobre **MacOs/Parallels**
 
+
+## Kubernetes
+
+- Playbook para configurar un cluser de [Kubernetes](https://kubernetes.io/) con [K3S](https://k3s.io/). Configura tanto el master como los nodos conforme a la relación que se indique en el inventario de Ansible.
+
+
 ## DockerServer
 
-- Playbook para configurar un servidor Docker junto con el stack de contenedores para mi Homelab: [**Portainer**](https://www.portainer.io/), [**Homer dashboard**](https://github.com/bastienwirtz/homer) y [**File browser**](https://github.com/filebrowser/filebrowser). Todo queda configurado y en funcionamiento salvo la creación de un entorno adicional en Portainer para controlar los contenedores que se ejecutan en la NAS ya que no encuentro cómo hacerlo desde la línea de órdenes.
+- Playbook para configurar un servidor Docker junto con el stack de contenedores para mi Homelab: [**Portainer**](https://www.portainer.io/), [**Homer dashboard**](https://github.com/bastienwirtz/homer) y [**File browser**](https://github.com/filebrowser/filebrowser).
 
 
 ## MonitoringServer
@@ -14,14 +20,14 @@ Este proyecto está formado por los **playbooks** y los **roles** de la herramie
 - Playbook para configurar un panel de monitorización con la telemetría de las Raspberry en mi Homelab. Instala dos contenedores : [InfluxDB](https://www.influxdata.com) y [Grafana](https://grafana.com/) y el servicio Telegraf para capturar la telemetría. PREREQUISITO: La Raspberry debe tener **Docker** instalado para que funcionen los contenedores. El panel es el de [Lex Rivera](https://grafana.com/grafana/dashboards/928).
 
 
-## NewRaspberry
-
-- Playbook para configurar una Raspberry nueva. Inlcuye **roles** para crear un usuario con autenticación SSH, actualizar todos los paquetes y establecer la zona horaria correcta.
-
-
 ## TelegrafClient
 
 - Playbook para configurar Telegraf en las Raspberry que vayan a enviar telemetría al panel de monitorización del Homelab (ver **MonitoringServer**).
+
+
+## NewRaspberry
+
+- Playbook para configurar una Raspberry nueva. Inlcuye **roles** para crear un usuario con autenticación SSH, actualizar todos los paquetes y establecer la zona horaria correcta.
 
 
 ## Raspberry DNS
