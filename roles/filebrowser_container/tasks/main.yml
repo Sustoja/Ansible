@@ -1,0 +1,11 @@
+---
+- name: Restart FileBrowser container
+  community.docker.docker_container:
+    name: filebrowser
+    image: filebrowser/filebrowser:latest
+    state: started
+    restart_policy: always
+    ports:
+      - "{{ host_port }}:80"
+    volumes:
+      - "/:/srv"

@@ -1,6 +1,0 @@
-NewPiServers:
-  hosts:
-    192.168.1.23:
-    192.168.1.24:
-  vars:
-    ansible_user: ja 

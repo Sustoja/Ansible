@@ -1,0 +1,17 @@
+# https://www.howtoforge.com/tutorial/setup-new-user-and-ssh-key-authentication-using-ansible/
+
+# El playbook hay que ejecutarlo con la opción '-k' porque aún no
+# está disponible la autenticación con certificado al ser un equipo nuevo.
+
+- hosts: [NewPiServers]
+  gather_facts: false
+  become: yes
+
+  vars_files:
+    - vars.yml
+
+  roles:
+    - createuser
+    - sethostname
+    - settimezone
+    - updatepackages

@@ -1,0 +1,9 @@
+- hosts: [ContainerServers]
+  gather_facts: false
+  become: yes
+
+  roles:
+    - docker_server
+    - portainer_container
+    - homer_container
+    - filebrowser_container

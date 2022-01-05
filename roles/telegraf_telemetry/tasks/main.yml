@@ -1,0 +1,62 @@
+---
+# https://www.jorgedelacruz.es/2019/07/22/en-busca-del-dashboard-perfecto-influxdb-telegraf-y-grafana-parte-xviii-monitorizar-temperatura-y-estado-de-raspberry-pi-4/
+
+- name: Install InfluxData repository key
+  apt_key:
+    url: "{{ influxdata_repo }}/influxdb.key"
+    state: present
+
+- name: Get InfluxData repository identifier
+  shell: 'echo "deb [arch=$(dpkg --print-architecture)] {{ influxdata_repo }}/debian $(lsb_release -cs) stable"'
+  register: id_repository
+  changed_when: false
+
+- name: Add InfluxData repository.
+  apt_repository:
+    repo: "{{ id_repository.stdout }}"
+    state: present
+    update_cache: true
+
+- name: Install Telegraf
+  apt:
+    name: telegraf
+    state: latest
+    update_cache: yes
+
+- name: Start Telegraf
+  service:
+    name: telegraf
+    state: started
+    enabled: yes
+
+- name: Copy config template to monitor Raspberry state
+  template:
+    src: templates/rpiservices.conf.j2
+    dest: /etc/telegraf/telegraf.d/rpiservices.conf
+
+- name: Copy config file to get Raspberry temperature
+  copy:
+    src: files/raspberrypitemp.conf
+    dest: /etc/telegraf/telegraf.d/raspberrypitemp.conf
+
+- name: adding user 'telegraf' to group video
+  user:
+    name: telegraf
+    groups:
+      - video
+    append: yes
+  register: user_group
+
+- name: Reboot for changes to take effect
+  reboot:
+    connect_timeout: 5
+    reboot_timeout: 300
+    pre_reboot_delay: 0
+    post_reboot_delay: 30
+    test_command: uptime
+  when: user_group.changed
+
+- name: Restart service to apply new configuration
+  service:
+    name: telegraf
+    state: restarted

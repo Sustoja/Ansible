@@ -1,5 +1,0 @@
-[DockerServers]
-192.168.1.9
-
-[DockerServers:vars]
-ansible_user=ja

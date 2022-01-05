@@ -1,0 +1,8 @@
+#  IMPORTANT: Set 'hostname' variable for each server in the hosts file
+
+user: ja
+ssh_key_file: "/Users/{{ user }}/.ssh/id_rsa.pub"
+# User password obtained with this command: mkpasswd '--method=SHA-512'
+password: "$6$7gkL4EhWgrz$4oVK2MaS6tXZ/bpsWxuD2h.ov0MmgPKMnyjTQOwbmpLgjpoMWFvnJ3THO7k6sTO6EUVrIsDoSXdNtOTPW7kpc1"
+
+timezone: Europe/Madrid

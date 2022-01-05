@@ -1,0 +1,24 @@
+---
+# https://docs.ansible.com/ansible/latest/collections/community/docker/docker_container_module.html#ansible-collections-community-docker-docker-container-module
+# https://github.com/notthebee/infra/blob/main/roles/homer/tasks/main.yml
+
+- name: Restart Homer container
+  community.docker.docker_container:
+    name: homer
+    image: b4bz/homer:latest
+    state: started
+    restart_policy: always
+    ports:
+      - "{{ host_port }}:8080"
+    volumes:
+      - "{{ assets_dir }}:/www/assets"
+
+- name: Template config.yml into server
+  ansible.builtin.template:
+    src: "templates/config.j2"
+    dest: "{{ assets_dir }}/config.yml"
+
+- name: Copy and unzip icons into server
+  ansible.builtin.unarchive:
+    src: "files/icons.zip"
+    dest: "{{ assets_dir }}/tools"

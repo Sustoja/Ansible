@@ -1,0 +1,17 @@
+---
+# Sets Europe/Madrid timezone by default
+
+- name: Ensure NPT installed
+  apt:
+    name: ntp
+    state: present
+
+- name: Make sure ntp is started and enabled on restart.
+  service:
+    name: ntp
+    state: started
+    enabled: yes
+
+- name: Set the timezone to {{ timezone }}
+  timezone:
+    name: "{{ timezone }}"

@@ -1,6 +1,0 @@
-[NewPiServers]
-192.168.1.9   hostname='k3sserver'
-192.168.1.10  hostname='k3snode01'
-
-[NewPiServers:vars]
-ansible_user=pi
