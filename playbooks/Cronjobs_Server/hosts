@@ -1,0 +1,5 @@
+[CronJobsServers]
+292.168.1.23
+
+[CronJobsServers:vars]
+ansible_user=ja

@@ -1,12 +1,11 @@
 ---
-    
 - name: Install beautiful soup python package
   pip:
     name: beautifulsoup4
 
 - name: Copy ini file
   copy:
-    src: ../files/empleoPublico.ini.NOTFORGIT
+    src: files/empleoPublico.ini.NOTFORGIT
     dest: /etc/scriptsJA/EmpleoPublico/empleoPublico.ini
 
 - name: Program a job to find opportunities in the public sector
@@ -14,4 +13,5 @@
     name: Check public employment opportunities
     minute: "2"
     hour: "9"
-    job: "python /etc/scriptsJA/EmpleoPublico/empleoPublico.py > /dev/null"   
+    job: "python3 /etc/scriptsJA/EmpleoPublico/empleoPublico.py > /dev/null"
+    user: "{{ ansible_user }}"

@@ -1,0 +1,37 @@
+---
+- name: Install Pi-hole
+  include_role:
+    name: chubchubsancho.pi_hole
+
+- name: Remove Pi-hole password.
+  shell:
+    cmd: echo | pihole -a -p
+
+- name: Install local network DNS settings
+  copy:
+    src: custom.list.NOTFORGIT
+    dest: /etc/pihole/custom.list
+
+- name: Update repositories cache and install "Unbound" package
+  apt:
+    name: unbound
+    update_cache: yes
+
+- name: Creating ja_unbound.conf file with content
+  copy:
+    src: my_unbound.conf
+    dest: /etc/unbound/unbound.conf.d/my_unbound.conf
+
+- name: 30 second pause, otherwise next step fails
+  pause:
+    seconds: 30
+
+- name: Start service "Unbound"
+  service:
+    name: unbound
+    state: started
+    enabled: yes
+
+- name: 30 second pause to make sure DNS service is stable
+  pause:
+    seconds: 30

@@ -1,0 +1,4 @@
+---
+- import_tasks: InstallGit.yml
+- import_tasks: DeployMyIP.yml
+- import_tasks: DeployEmpleoPublico.yml

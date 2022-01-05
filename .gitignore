@@ -2,4 +2,6 @@
 /_NetworkConfigPi
 /_NASCert
 Ansible.code-workspace
+.vscode
 *.log
+*.NOTFORGIT

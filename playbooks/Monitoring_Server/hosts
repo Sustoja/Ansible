@@ -1,5 +1,5 @@
 [MonitoringServers]
-192.168.1.10
+292.168.1.10
 
 [MonitoringServers:vars]
 ansible_user=ja

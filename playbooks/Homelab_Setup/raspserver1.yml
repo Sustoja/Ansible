@@ -1,0 +1,20 @@
+- hosts: all
+  gather_facts: yes
+  become: yes
+
+  roles:
+    # Pihole & Unbound server
+    - pihole_server
+
+    # Container server
+    - docker_server
+    - portainer_container
+    - homer_container
+    - filebrowser_container
+
+    # Cronjobs
+    - cronjobs_server
+
+    # Monitoring server
+    - influxgrafana_container
+    - telegraf_telemetry

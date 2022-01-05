@@ -3,8 +3,8 @@
 # El playbook hay que ejecutarlo con la opción '-k' porque aún no
 # está disponible la autenticación con certificado al ser un equipo nuevo.
 
-- hosts: [NewPiServers]
-  gather_facts: false
+- hosts: all
+  gather_facts: no
   become: yes
 
   vars_files:

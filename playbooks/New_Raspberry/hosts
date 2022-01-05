@@ -1,5 +1,5 @@
 [NewPiServers]
-192.168.1.9   hostname='k3smaster'
+292.168.1.9   hostname='k3smaster'
 
 [NewPiServers:vars]
 ansible_user=ja
