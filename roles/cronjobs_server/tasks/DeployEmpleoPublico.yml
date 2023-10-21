@@ -1,7 +1,9 @@
 ---
 - name: Install beautiful soup python package
-  pip:
-    name: beautifulsoup4
+  ansible.builtin.shell: sudo apt install python3-*beautifulsoup*
+
+- name: Install beautiful soup python package
+  ansible.builtin.shell: sudo apt install python3-*bs4*
 
 - name: Copy ini file
   copy:

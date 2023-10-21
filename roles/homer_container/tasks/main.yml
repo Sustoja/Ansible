@@ -18,6 +18,11 @@
     src: "templates/config.j2"
     dest: "{{ assets_dir }}/config.yml"
 
+- name: Creates directory
+  file:
+    path: "{{ assets_dir }}/tools"
+    state: directory
+
 - name: Copy and unzip icons into server
   ansible.builtin.unarchive:
     src: "files/icons.zip"
